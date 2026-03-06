@@ -5,6 +5,11 @@ use App\Http\Controllers\BookRestController;
 use App\Http\Controllers\BookRpcController;
 use App\Http\Controllers\BookSacController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TimeRestController;
+use App\Http\Controllers\TimeRpcController;
+
+Route::get('/rest/time', [TimeRestController::class, 'index']);
+Route::get('/rpc/time', [TimeRpcController::class, 'getTime']);
 
 Route::post('/rpc/books/{id}/borrow', [BookRpcController::class, 'borrowBook']);
 Route::post('/rpc/books/{id}/return', [BookRpcController::class, 'returnBook']);
@@ -16,6 +21,5 @@ Route::prefix('rest')->group(function () {
 });
 
 Route::prefix('restapi')->group(function () {
-    Route::apiresource('books', BookApiController::class);
+    Route::apiResource('books', BookApiController::class);
 });
-//test for commit
